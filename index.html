@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shakshi Karn - Digital Marketing Executive</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cormorant+SC:wght@600&family=DM+Serif+Display:ital@0;1&family=Dancing+Script:wght@500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F5F0E8;--cream2:#EDE6D6;--cream3:#E2D8C5;--burgundy:#7C1D20;--wine:#5C1215;--rust:#9B3A2A;--dark:#1A1008;--mid:#5C4A35;--light:#9A8468;--white:#FDFAF5}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden}
+.scroll-bar{position:fixed;top:0;left:0;height:3px;z-index:999;background:var(--burgundy);width:0%}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 5vw;transition:all .4s}
+nav.scrolled{background:rgba(245,240,232,.96);backdrop-filter:blur(18px);border-bottom:1px solid rgba(124,29,32,.12);padding:.9rem 5vw}
+.nav-logo{font-family:'Cormorant SC',serif;font-size:.75rem;letter-spacing:.22em;color:var(--dark);text-decoration:none;text-transform:uppercase;cursor:pointer}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color .25s;cursor:pointer}
+.nav-links a:hover{color:var(--burgundy)}
+.nav-cta{font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--white);background:var(--burgundy);padding:.5rem 1.4rem;border-radius:100px;text-decoration:none;transition:background .25s;cursor:pointer}
+.nav-cta:hover{background:var(--wine)}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer}
+.nav-toggle span{display:block;width:22px;height:1.5px;background:var(--dark);margin:5px 0}
+
+/* HERO */
+#hero{min-height:100vh;background:var(--cream);padding-top:5rem;position:relative;overflow:hidden;display:flex;flex-direction:column}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes spinRing{from{transform:rotateX(70deg) rotateZ(0deg)}to{transform:rotateX(70deg) rotateZ(360deg)}}
+@keyframes badgeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(var(--tx,8px),var(--ty,-8px))}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.hero-title{text-align:center;padding:0 5vw;animation:fadeUp .9s .1s both}
+.hero-title h1{font-family:'DM Serif Display',serif;font-size:clamp(3rem,10vw,9rem);line-height:.9;color:var(--burgundy);display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:.3em}
+.hero-title h1 span.it{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--wine)}
+.hero-title h1 span.sc{font-family:'Cormorant SC',serif;font-weight:600}
+
+.hero-content{flex:1;display:flex;align-items:flex-end;justify-content:center;position:relative;padding:0 5vw}
+.hero-col-left{position:absolute;left:5vw;bottom:8%;display:flex;flex-direction:column;gap:.5rem;animation:fadeUp .8s .4s both}
+.hero-col-right{position:absolute;right:5vw;bottom:8%;display:flex;flex-direction:column;gap:.5rem;text-align:right;animation:fadeUp .8s .5s both}
+.hero-label{font-size:.55rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--light)}
+.hero-val{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--burgundy);line-height:1}
+
+.hero-centre{width:min(360px,52vw);position:relative;animation:fadeUp .9s .3s both}
+.stats-card{background:linear-gradient(175deg,var(--cream2),var(--cream3));border:1px solid rgba(124,29,32,.14);padding:2.5rem 2rem 2rem;display:flex;flex-direction:column;gap:1.6rem}
+.stat{border-left:2px solid var(--burgundy);padding-left:1rem}
+.stat-v{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--burgundy);line-height:1}
+.stat-l{font-size:.52rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--light);margin-top:.2rem}
+
+.orbit-wrap{position:absolute;top:50%;left:50%;width:0;height:0;pointer-events:none;z-index:3}
+.orbit-ring{position:absolute;width:300px;height:300px;border-radius:50%;border:1.5px solid rgba(124,29,32,.18);top:-150px;left:-150px;animation:spinRing 12s linear infinite;transform-style:preserve-3d}
+.orbit-ring::before{content:'';position:absolute;top:-5px;left:50%;width:9px;height:9px;border-radius:50%;background:var(--burgundy);box-shadow:0 0 12px rgba(124,29,32,.6);transform:translateX(-50%)}
+.orbit-ring-2{width:360px;height:360px;border-color:rgba(155,58,42,.1);top:-180px;left:-180px;animation:spinRing 18s linear infinite reverse}
+.orbit-ring-2::before{background:var(--rust)}
+
+.badge{position:absolute;background:var(--white);border:1px solid rgba(124,29,32,.12);border-radius:12px;padding:.75rem 1rem;box-shadow:0 12px 36px rgba(124,29,32,.12);z-index:5}
+.badge-v{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--burgundy);line-height:1}
+.badge-l{font-size:.5rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--light)}
+
+.shape{position:absolute;pointer-events:none}
+.gem-wrap{width:36px;height:36px;transform:rotate(45deg);background:linear-gradient(135deg,rgba(124,29,32,.2),rgba(155,58,42,.06));border:1px solid rgba(124,29,32,.25);box-shadow:inset 0 0 8px rgba(255,255,255,.2)}
+.sphere{border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(253,250,245,.7),rgba(124,29,32,.1));border:1px solid rgba(124,29,32,.1)}
+.donut{border-radius:50%;border:5px solid rgba(124,29,32,.18)}
+
+.particle{position:absolute;border-radius:50%;background:var(--burgundy);animation:drift var(--dur,6s) ease-in-out infinite;opacity:var(--op,.15)}
+
+.hero-strip{border-top:1px solid rgba(124,29,32,.12);display:flex;align-items:center;justify-content:space-between;padding:.9rem 5vw;flex-wrap:wrap;gap:.5rem}
+.strip-left{font-size:.55rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--light);display:flex;align-items:center;gap:.6rem}
+.strip-left::before{content:'';display:block;width:28px;height:1px;background:var(--cream3)}
+.strip-right{font-family:'Dancing Script',cursive;font-size:1rem;color:var(--light)}
+
+/* SECTIONS */
+section{padding:5rem 5vw}
+.inner{max-width:1100px;margin:0 auto}
+.s-eye{font-family:'Dancing Script',cursive;font-size:1.3rem;color:var(--rust);display:block;text-align:center;margin-bottom:.5rem}
+.s-hed{font-family:'DM Serif Display',serif;font-size:clamp(2rem,5vw,3.2rem);text-align:center;font-weight:400;text-transform:uppercase;letter-spacing:.04em;color:var(--dark);margin-bottom:2.8rem}
+.s-hed em{font-style:italic;color:var(--burgundy)}
+
+/* ABOUT */
+#about{background:var(--white)}
+.about-hed{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,4vw,2.6rem);text-align:center;font-weight:400;text-transform:uppercase;color:var(--dark);margin-bottom:2.5rem;max-width:680px;margin-left:auto;margin-right:auto}
+.about-hed em{font-style:italic;color:var(--burgundy)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-grid p{font-size:.84rem;line-height:1.85;color:var(--mid);font-weight:300;margin-bottom:.9rem}
+.about-grid p.lead{font-weight:500;text-transform:uppercase;font-size:.78rem;letter-spacing:.04em}
+.btn{display:inline-flex;align-items:center;font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--white);background:var(--burgundy);padding:.7rem 1.8rem;border-radius:100px;text-decoration:none;transition:background .25s;cursor:pointer;margin-top:1rem}
+.btn:hover{background:var(--wine)}
+
+/* MARQUEE */
+.marquee-wrap{background:var(--dark);overflow:hidden;padding:1.6rem 0}
+.marquee-track{display:flex;white-space:nowrap;animation:marquee 22s linear infinite}
+.mw{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,5.5vw,4.5rem);color:rgba(245,240,232,.1);padding:0 1.8rem}
+.mw.on{color:rgba(245,240,232,.85)}
+.ms{font-size:1.5rem;color:var(--burgundy);opacity:.7;align-self:center;flex-shrink:0;padding:0 .3rem}
+
+/* SERVICES */
+#services{background:var(--cream)}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(124,29,32,.14)}
+.svc{padding:1.8rem 1.4rem;border-right:1px solid rgba(124,29,32,.14);background:var(--white);position:relative;overflow:hidden;transition:background .3s}
+.svc:last-child{border-right:none}
+.svc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--burgundy);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.svc:hover{background:var(--cream)}
+.svc:hover::after{transform:scaleX(1)}
+.svc-n{font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:600;color:var(--cream2);line-height:1;margin-bottom:1rem;transition:color .3s}
+.svc:hover .svc-n{color:rgba(124,29,32,.2)}
+.svc h3{font-family:'DM Serif Display',serif;font-size:.95rem;font-weight:400;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.5rem}
+.svc p{font-size:.74rem;line-height:1.7;color:var(--mid);font-weight:300}
+
+/* EXPERIENCE */
+#experience{background:var(--dark)}
+#experience .s-eye{color:rgba(245,240,232,.4)}
+#experience .s-hed{color:var(--white)}
+#experience .s-hed em{color:rgba(155,58,42,.9)}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(245,240,232,.07)}
+.exp{background:var(--dark);padding:2rem 1.8rem;cursor:pointer;position:relative;transition:background .3s}
+.exp:hover{background:rgba(124,29,32,.12)}
+.exp::after{content:'\2192';position:absolute;bottom:1.6rem;right:1.8rem;color:var(--burgundy);opacity:0;transform:translateX(-6px);transition:all .3s}
+.exp:hover::after{opacity:1;transform:translateX(0)}
+.exp-yr{font-size:.56rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem}
+.exp-yr::before{content:'';width:16px;height:1px;background:var(--burgundy)}
+.exp-role{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--white);margin-bottom:.25rem;line-height:1.2}
+.exp-co{font-size:.7rem;color:rgba(245,240,232,.3);margin-bottom:.9rem;font-weight:300}
+.exp-note{font-size:.75rem;line-height:1.7;color:rgba(245,240,232,.4);font-weight:300;border-top:1px solid rgba(245,240,232,.08);padding-top:.9rem}
+
+/* PORTFOLIO */
+#portfolio{background:var(--cream2)}
+.port-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.port{background:var(--white);border:1px solid rgba(124,29,32,.1);cursor:pointer;overflow:hidden;transition:transform .4s,box-shadow .35s}
+.port:hover{transform:translateY(-5px);box-shadow:0 22px 55px rgba(26,16,8,.1)}
+.port-thumb{aspect-ratio:16/9;background:var(--cream);display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(124,29,32,.1);position:relative;overflow:hidden}
+.port-thumb span{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(124,29,32,.28);transition:transform .4s}
+.port:hover .port-thumb span{transform:scale(1.05)}
+.port-cta{position:absolute;inset:0;background:rgba(26,16,8,0);display:flex;align-items:center;justify-content:center;transition:background .35s}
+.port-cta em{font-style:normal;font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--white);background:var(--burgundy);padding:.45rem 1.2rem;border-radius:100px;opacity:0;transition:all .3s;transform:translateY(5px)}
+.port:hover .port-cta{background:rgba(26,16,8,.4)}
+.port:hover .port-cta em{opacity:1;transform:translateY(0)}
+.port-body{padding:1.3rem 1.4rem 1.5rem}
+.port-plat{font-size:.52rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--burgundy);margin-bottom:.35rem;display:flex;align-items:center;gap:.4rem}
+.port-plat::before{content:'';width:12px;height:1px;background:var(--burgundy)}
+.port-body h3{font-family:'DM Serif Display',serif;font-size:1rem;font-weight:400;margin-bottom:.2rem;line-height:1.25}
+.port-body p{font-size:.74rem;color:var(--mid);font-weight:300;line-height:1.6}
+.port-stats{display:flex;margin-top:.9rem;padding-top:.9rem;border-top:1px solid rgba(124,29,32,.1)}
+.ps{flex:1;border-right:1px solid rgba(124,29,32,.1);padding-right:.7rem}
+.ps:last-child{border-right:none;padding-left:.7rem;padding-right:0}
+.ps-v{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--burgundy);line-height:1}
+.ps-l{font-size:.52rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--light);margin-top:.1rem}
+
+/* SKILLS */
+#skills{background:var(--cream2);padding-top:0}
+.sk-grid{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid rgba(124,29,32,.14)}
+.sk-col{padding:2rem 1.8rem;border-right:1px solid rgba(124,29,32,.14)}
+.sk-col:last-child{border-right:none}
+.sk-title{font-family:'Dancing Script',cursive;font-size:1.2rem;color:var(--rust);margin-bottom:1.1rem}
+.sk-item{display:flex;align-items:center;gap:.7rem;font-size:.78rem;color:var(--mid);margin-bottom:.55rem}
+.sk-dot{width:5px;height:5px;border-radius:50%;background:var(--burgundy);flex-shrink:0}
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
+.tool{background:var(--white);border:1px solid rgba(124,29,32,.1);padding:.55rem .9rem;font-size:.73rem;color:var(--mid);text-align:center;transition:all .2s}
+.tool:hover{background:rgba(124,29,32,.06);color:var(--burgundy)}
+.cert{border-left:2px solid var(--burgundy);padding-left:.9rem;margin-bottom:.95rem}
+.cert-n{font-family:'DM Serif Display',serif;font-size:.88rem;color:var(--dark);line-height:1.3}
+.cert-by{font-size:.62rem;color:var(--light);margin-top:.15rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.edu{margin-top:1.8rem;padding-top:1.4rem;border-top:1px solid rgba(124,29,32,.1)}
+.edu-l{font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--light);margin-bottom:.7rem}
+.edu-n{font-family:'DM Serif Display',serif;font-size:.92rem;color:var(--dark)}
+.edu-s{font-size:.73rem;color:var(--mid);margin-top:.2rem}
+
+/* CONTACT */
+#contact{background:var(--dark);color:var(--white);padding:5.5rem 5vw 2.5rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:start}
+.c-left{padding-right:4.5rem;border-right:1px solid rgba(245,240,232,.08)}
+.c-script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:rgba(245,240,232,.35);display:block;margin-bottom:.7rem}
+.c-hed{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:400;line-height:.95;margin-bottom:1rem}
+.c-hed em{font-style:italic;color:rgba(155,58,42,.9)}
+.c-sub{font-size:.83rem;line-height:1.8;color:rgba(245,240,232,.4);font-weight:300;margin-bottom:2.5rem}
+.c-links{display:flex;flex-direction:column;border:1px solid rgba(245,240,232,.08);margin-bottom:2rem}
+.c-link{display:flex;align-items:center;gap:.9rem;padding:.85rem 1.1rem;border-bottom:1px solid rgba(245,240,232,.08);text-decoration:none;color:rgba(245,240,232,.4);font-size:.74rem;font-weight:300;transition:all .25s}
+.c-link:last-child{border-bottom:none}
+.c-link:hover{background:rgba(245,240,232,.04);color:rgba(245,240,232,.85)}
+.c-icon{width:28px;height:28px;background:rgba(245,240,232,.05);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.avail{padding:1.3rem 1.4rem;border:1px solid rgba(245,240,232,.08)}
+.avail-t{font-size:.53rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(155,58,42,.85);margin-bottom:.9rem}
+.avail-item{display:flex;align-items:center;gap:.55rem;font-size:.74rem;color:rgba(245,240,232,.4);margin-bottom:.4rem;font-weight:300}
+.avail-dot{width:4px;height:4px;background:var(--burgundy);flex-shrink:0;border-radius:50%}
+.c-right{padding-left:4.5rem}
+.c-form{display:flex;flex-direction:column;gap:.8rem}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.f-grp{display:flex;flex-direction:column;gap:.3rem}
+.f-lbl{font-size:.53rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.25)}
+.f-inp,.f-ta{background:rgba(245,240,232,.04);border:1px solid rgba(245,240,232,.1);padding:.78rem 1rem;font-family:'Jost',sans-serif;font-size:.84rem;color:var(--white);outline:none;transition:border-color .3s;width:100%;border-radius:0}
+.f-inp::placeholder,.f-ta::placeholder{color:rgba(245,240,232,.18)}
+.f-inp:focus,.f-ta:focus{border-color:var(--burgundy);background:rgba(124,29,32,.06)}
+.f-ta{min-height:108px;resize:vertical}
+.f-btn{font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--white);background:var(--burgundy);border:none;padding:.82rem 1.9rem;border-radius:100px;cursor:pointer;align-self:flex-start;transition:all .25s}
+.f-btn:hover{background:var(--wine);transform:translateY(-1px)}
+.footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-top:4rem;padding-top:1.4rem;border-top:1px solid rgba(245,240,232,.08);font-size:.53rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,240,232,.2)}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;z-index:400;background:rgba(26,16,8,.78);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;visibility:hidden;transition:all .35s}
+.modal-bg.on{opacity:1;visibility:visible}
+.modal{background:var(--white);max-width:520px;width:100%;padding:2.4rem;position:relative;border-top:3px solid var(--burgundy);transform:scale(.93) translateY(20px);transition:transform .4s cubic-bezier(.19,1,.22,1);max-height:86vh;overflow-y:auto}
+.modal-bg.on .modal{transform:scale(1) translateY(0)}
+.modal-x{position:absolute;top:1.1rem;right:1.1rem;width:27px;height:27px;border:1px solid rgba(124,29,32,.15);background:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.8rem;color:var(--light);transition:all .25s}
+.modal-x:hover{background:var(--burgundy);color:var(--white)}
+.modal-tag{font-size:.56rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--burgundy);margin-bottom:.4rem}
+.modal h2{font-family:'DM Serif Display',serif;font-size:1.45rem;font-weight:400;margin-bottom:.85rem}
+.modal p{font-size:.84rem;line-height:1.78;color:var(--mid);font-weight:300;margin-bottom:.65rem}
+.modal-stats{display:flex;margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid rgba(124,29,32,.1)}
+.ms-item{flex:1;text-align:center;padding:.85rem .4rem;border-right:1px solid rgba(124,29,32,.1)}
+.ms-item:last-child{border-right:none}
+.ms-v{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--burgundy)}
+.ms-l{font-size:.52rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--light);margin-top:.2rem}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .75s cubic-bezier(.4,0,.2,1),transform .75s cubic-bezier(.4,0,.2,1)}
+.rv-l{opacity:0;transform:translateX(-26px);transition:opacity .75s,transform .75s}
+.rv-r{opacity:0;transform:translateX(26px);transition:opacity .75s,transform .75s}
+.rv.in,.rv-l.in,.rv-r.in{opacity:1;transform:translate(0)}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero-title h1{font-size:clamp(2.5rem,10vw,5.5rem)}
+  .hero-col-left,.hero-col-right{display:none}
+  .hero-centre{width:min(300px,80vw)}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .svc:nth-child(2){border-right:none}.svc:nth-child(4){border-right:none}
+  .svc{border-bottom:1px solid rgba(124,29,32,.14)}
+  .exp-grid,.port-grid,.sk-grid,.contact-grid{grid-template-columns:1fr}
+  .sk-col{border-right:none;border-bottom:1px solid rgba(124,29,32,.14)}.sk-col:last-child{border-bottom:none}
+  .c-left{padding-right:0;border-right:none;padding-bottom:3rem}
+  .c-right{padding-left:0}
+  .about-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .nav-links{display:none}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(245,240,232,.97);backdrop-filter:blur(20px);padding:1.5rem 5vw;gap:.9rem;border-bottom:1px solid rgba(124,29,32,.12)}
+  .nav-toggle{display:block}
+  .svc-grid{grid-template-columns:1fr}
+  .svc{border-right:none}
+  .f-row{grid-template-columns:1fr}
+  .footer{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-bar" id="sb"></div>
+
+<nav id="nav">
+  <span class="nav-logo" onclick="goTo('hero')">Shakshi Karn</span>
+  <ul class="nav-links" id="nl">
+    <li><a onclick="goTo('about')">About</a></li>
+    <li><a onclick="goTo('services')">Services</a></li>
+    <li><a onclick="goTo('experience')">Experience</a></li>
+    <li><a onclick="goTo('portfolio')">Work</a></li>
+    <li><a onclick="goTo('skills')">Skills</a></li>
+    <li><a onclick="goTo('contact')">Contact</a></li>
+  </ul>
+  <a class="nav-cta" onclick="goTo('contact')">Enquire</a>
+  <button class="nav-toggle" id="nt"><span></span><span></span><span></span></button>
+</nav>
+
+<section id="hero">
+  <div class="particle" style="width:6px;height:6px;top:15%;left:8%;--dur:7s;--op:.18;--tx:12px;--ty:-18px"></div>
+  <div class="particle" style="width:4px;height:4px;top:26%;left:17%;--dur:5s;--op:.1;--tx:-9px;--ty:13px"></div>
+  <div class="particle" style="width:7px;height:7px;top:58%;left:5%;--dur:9s;--op:.14;--tx:13px;--ty:-8px"></div>
+  <div class="particle" style="width:5px;height:5px;top:11%;right:11%;--dur:6s;--op:.16;--tx:-11px;--ty:16px"></div>
+  <div class="particle" style="width:6px;height:6px;top:42%;right:7%;--dur:8s;--op:.12;--tx:8px;--ty:-13px"></div>
+
+  <div class="shape" style="top:18%;left:5%;animation:floatY 6s ease-in-out infinite">
+    <div class="gem-wrap" style="width:36px;height:36px"></div>
+  </div>
+  <div class="shape" style="top:22%;right:6%;animation:floatY 5s ease-in-out infinite .5s">
+    <div class="sphere" style="width:46px;height:46px"></div>
+  </div>
+  <div class="shape" style="bottom:28%;left:4%;animation:floatY 7s ease-in-out infinite 1s">
+    <div class="donut" style="width:42px;height:42px"></div>
+  </div>
+
+  <div class="hero-title">
+    <h1>
+      <span>Digital </span>
+      <span class="it">Marketing </span>
+      <span class="sc">Executive</span>
+    </h1>
+  </div>
+
+  <div class="hero-content">
+    <div style="position:relative;max-width:1100px;width:100%;margin:0 auto;display:flex;align-items:flex-end;justify-content:center">
+      <div class="hero-col-left">
+        <div class="hero-label">Shakshi Karn</div>
+        <div class="hero-label">New Delhi, India</div>
+      </div>
+
+      <div class="hero-centre">
+        <div class="orbit-wrap" style="top:50%;left:50%">
+          <div class="orbit-ring"></div>
+          <div class="orbit-ring orbit-ring-2"></div>
+        </div>
+        <div class="badge" style="top:-8px;right:-18px;animation:badgeFloat 5s ease-in-out infinite">
+          <div class="badge-v">49.8K</div><div class="badge-l">Impressions</div>
+        </div>
+        <div class="badge" style="bottom:60px;left:-18px;animation:badgeFloat 7s ease-in-out infinite;animation-delay:1s">
+          <div class="badge-v">+714%</div><div class="badge-l">Growth</div>
+        </div>
+        <div class="badge" style="bottom:6px;right:-18px;animation:badgeFloat 6s ease-in-out infinite;animation-delay:2s">
+          <div class="badge-v">100%</div><div class="badge-l">Organic</div>
+        </div>
+        <div class="stats-card">
+          <div class="stat"><div class="stat-v">1.5 Yrs</div><div class="stat-l">Industry Experience</div></div>
+          <div class="stat"><div class="stat-v">6</div><div class="stat-l">Platforms Managed</div></div>
+          <div class="stat"><div class="stat-v">2-3%</div><div class="stat-l">Monthly Audience Growth</div></div>
+          <div class="stat"><div class="stat-v">B2B+B2C</div><div class="stat-l">Client Portfolio</div></div>
+        </div>
+      </div>
+
+      <div class="hero-col-right">
+        <div class="hero-label">SMM &middot; SEO Content</div>
+        <div class="hero-label">Meta Ads &middot; Analytics</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-strip">
+    <div class="strip-left">Laxmi Nagar &middot; New Delhi</div>
+    <div class="strip-right">karnshakshi4@gmail.com &middot; +91 96253 25590</div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="inner">
+    <p class="s-eye rv" id="ae">Shakshi Karn &mdash; Digital Marketing Executive</p>
+    <h2 class="about-hed rv" id="ah">Strategic Marketing. <em>Measurable Growth.</em><br>Demonstrated Impact.</h2>
+    <div class="about-grid rv" id="ag">
+      <div>
+        <p class="lead">A results-driven Digital Marketing Executive with 1.5 years of demonstrated success across social media management, SEO content strategy, and paid campaign execution for B2B and B2C organisations.</p>
+        <p>Proven track record managing multi-platform digital presences across Facebook, Instagram, LinkedIn, Quora, Medium, and Reddit &mdash; consistently delivering 2&ndash;3% month-over-month audience growth through data-informed strategy, trend analysis, and audience behaviour research.</p>
+        <a class="btn" onclick="goTo('portfolio')">View Case Studies &rarr;</a>
+      </div>
+      <div>
+        <p>Proficient in Meta Ads management, performance analytics, market research, and cross-functional client coordination &mdash; producing content that is precise, on-brand, and optimised for measurable outcomes.</p>
+        <p>Currently open to <strong>strategic freelance engagements</strong> and <strong>full-time executive roles</strong> &mdash; focused on delivering digital marketing initiatives that translate directly into business growth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="mw on">STRATEGY</span><span class="ms">&starf;</span>
+    <span class="mw">COMMUNITY</span><span class="ms">&starf;</span>
+    <span class="mw on">GROWTH</span><span class="ms">&starf;</span>
+    <span class="mw">STORYTELLING</span><span class="ms">&starf;</span>
+    <span class="mw on">IMPACT</span><span class="ms">&starf;</span>
+    <span class="mw">ANALYTICS</span><span class="ms">&starf;</span>
+    <span class="mw on">AUTHENTICITY</span><span class="ms">&starf;</span>
+    <span class="mw">RESULTS</span><span class="ms">&starf;</span>
+    <span class="mw on">STRATEGY</span><span class="ms">&starf;</span>
+    <span class="mw">COMMUNITY</span><span class="ms">&starf;</span>
+    <span class="mw on">GROWTH</span><span class="ms">&starf;</span>
+    <span class="mw">STORYTELLING</span><span class="ms">&starf;</span>
+    <span class="mw on">IMPACT</span><span class="ms">&starf;</span>
+    <span class="mw">ANALYTICS</span><span class="ms">&starf;</span>
+    <span class="mw on">AUTHENTICITY</span><span class="ms">&starf;</span>
+    <span class="mw">RESULTS</span><span class="ms">&starf;</span>
+  </div>
+</div>
+
+<section id="services">
+  <div class="inner">
+    <span class="s-eye rv">Service Offerings</span>
+    <h2 class="s-hed rv">Core Competencies That <em>Drive</em> Business Growth</h2>
+    <div class="svc-grid rv">
+      <div class="svc"><div class="svc-n">01</div><h3>Social Media Management</h3><p>End-to-end platform management across Instagram, Facebook, LinkedIn, Quora, Medium &amp; Reddit &mdash; strategic content cadence, brand governance, and sustained 2&ndash;3% monthly audience growth.</p></div>
+      <div class="svc"><div class="svc-n">02</div><h3>Content Strategy &amp; SEO Writing</h3><p>Development of SEO-optimised editorial content, platform-specific copy, Instagram story frameworks, and Reels scripts &mdash; engineered for organic reach without paid amplification.</p></div>
+      <div class="svc"><div class="svc-n">03</div><h3>Meta Ads &amp; Campaign Execution</h3><p>Full-cycle Meta Ads campaign management &mdash; creative briefing, audience targeting, performance monitoring, and detailed post-campaign reporting aligned to business KPIs.</p></div>
+      <div class="svc"><div class="svc-n">04</div><h3>Analytics &amp; Growth Strategy</h3><p>Comprehensive audience analysis, competitive trend research, monthly strategic planning, and analytics reporting &mdash; translating data into actionable recommendations for sustained growth.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="inner">
+    <span class="s-eye rv">Professional History</span>
+    <h2 class="s-hed rv">Relevant Experience. <em>Demonstrated Impact.</em></h2>
+    <div class="exp-grid">
+      <div class="exp rv" onclick="show('e0')"><div class="exp-yr">Jul 2025 &ndash; Present</div><div class="exp-role">Digital Marketing Executive</div><div class="exp-co">Bizvin &middot; Full-Time</div><div class="exp-note">Responsible for platform-specific SEO content production, Meta Ads campaign execution, monthly social strategy development, competitive trend research, analytics oversight, client coordination, and creative direction to design teams.</div></div>
+      <div class="exp rv" onclick="show('e1')"><div class="exp-yr">Sep 2024 &ndash; May 2025</div><div class="exp-role">Marketing Intern</div><div class="exp-co">iDigitalpreneur</div><div class="exp-note">Supported planning and execution of integrated marketing campaigns; developed Instagram story activation frameworks and maintained brand voice consistency across content and operations functions.</div></div>
+      <div class="exp rv" onclick="show('e2')"><div class="exp-yr">Aug 2024 &ndash; Sep 2024</div><div class="exp-role">Social Media Intern</div><div class="exp-co">Neophyde Consultancy</div><div class="exp-note">Produced brand-compliant Canva creatives, managed content scheduling across platforms, authored SEO-optimised captions, and actively contributed to strategic planning sessions.</div></div>
+      <div class="exp rv" onclick="show('e3')"><div class="exp-yr">Ongoing &middot; Freelance</div><div class="exp-role">Freelance Digital Marketing Strategist</div><div class="exp-co">Independent &middot; Multiple Clients</div><div class="exp-note">Delivering end-to-end social media strategy across LinkedIn, Instagram, Facebook &amp; Quora for clients across multiple verticals &mdash; 100% organic growth methodology, structured content calendars, and monthly performance reporting.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="inner">
+    <span class="s-eye rv">Selected Engagements</span>
+    <h2 class="s-hed rv">Client <em>Case Studies</em></h2>
+    <div class="port-grid">
+      <div class="port rv" onclick="show('p0')">
+        <div class="port-thumb"><span>AI Startup</span><div class="port-cta"><em>View Case Study</em></div></div>
+        <div class="port-body"><div class="port-plat">LinkedIn &middot; Organic Growth &middot; Bizvin Client</div><h3>Bootstrapped AI-as-a-Service Startup</h3><p>Developed and executed a full LinkedIn thought leadership programme from inception &mdash; 100% organic, within one of LinkedIn's most competitive industry verticals.</p><div class="port-stats"><div class="ps"><div class="ps-v">49.8K</div><div class="ps-l">Impressions</div></div><div class="ps"><div class="ps-v">+714%</div><div class="ps-l">Visibility</div></div><div class="ps"><div class="ps-v">155</div><div class="ps-l">New Followers</div></div></div></div>
+      </div>
+      <div class="port rv" onclick="show('p1')">
+        <div class="port-thumb"><span>Wellness Brand</span><div class="port-cta"><em>View Case Study</em></div></div>
+        <div class="port-body"><div class="port-plat">Instagram &middot; Facebook &middot; YouTube &middot; Bizvin Client</div><h3>Wellness Brand &mdash; Multi-Platform Launch</h3><p>Established a structured digital presence across three platforms from zero &mdash; brand voice definition, editorial calendar development, and educational content strategy. Ongoing.</p><div class="port-stats"><div class="ps"><div class="ps-v">3</div><div class="ps-l">Platforms</div></div><div class="ps"><div class="ps-v">Month 1</div><div class="ps-l">Ongoing</div></div><div class="ps"><div class="ps-v">100%</div><div class="ps-l">Organic</div></div></div></div>
+      </div>
+      <div class="port rv" onclick="show('p2')">
+        <div class="port-thumb"><span>Canadian Realtor</span><div class="port-cta"><em>View Case Study</em></div></div>
+        <div class="port-body"><div class="port-plat">Facebook &middot; Quora &middot; Bizvin Client</div><h3>Canadian Real Estate Professional</h3><p>Restructured content strategy, executed targeted Facebook advertising, and established Quora authority positioning to drive sustainable audience growth over seven months.</p><div class="port-stats"><div class="ps"><div class="ps-v">+156</div><div class="ps-l">Followers</div></div><div class="ps"><div class="ps-v">+9.7%</div><div class="ps-l">Growth</div></div><div class="ps"><div class="ps-v">7 mo</div><div class="ps-l">Sustained</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="inner">
+    <span class="s-eye rv">Professional Toolkit</span>
+    <h2 class="s-hed rv">Competencies, Tools &amp; <em>Certifications</em></h2>
+    <div class="sk-grid rv">
+      <div class="sk-col">
+        <div class="sk-title">Core Competencies</div>
+        <div class="sk-item"><span class="sk-dot"></span>Social Media Management</div>
+        <div class="sk-item"><span class="sk-dot"></span>SEO Content Writing</div>
+        <div class="sk-item"><span class="sk-dot"></span>Integrated Campaign Strategy</div>
+        <div class="sk-item"><span class="sk-dot"></span>Instagram Story Planning</div>
+        <div class="sk-item"><span class="sk-dot"></span>Script Writing for Reels</div>
+        <div class="sk-item"><span class="sk-dot"></span>Trend &amp; Moment Marketing</div>
+        <div class="sk-item"><span class="sk-dot"></span>Promotional Ideation</div>
+        <div class="sk-item"><span class="sk-dot"></span>Client &amp; Stakeholder Communication</div>
+      </div>
+      <div class="sk-col">
+        <div class="sk-title">Tools &amp; Platforms</div>
+        <div class="tool-grid">
+          <div class="tool">Canva</div><div class="tool">Meta Ads</div>
+          <div class="tool">Google Analytics</div><div class="tool">Meta Business Suite</div>
+          <div class="tool">Keyword Planner</div><div class="tool">ChatGPT</div>
+          <div class="tool">Claude</div><div class="tool">Sora</div>
+        </div>
+      </div>
+      <div class="sk-col">
+        <div class="sk-title">Certifications</div>
+        <div class="cert"><div class="cert-n">Google Analytics</div><div class="cert-by">Google</div></div>
+        <div class="cert"><div class="cert-n">Digital Marketing &amp; E-Commerce</div><div class="cert-by">Coursera</div></div>
+        <div class="cert"><div class="cert-n">Attract &amp; Engage Customers with Digital Marketing</div><div class="cert-by">Coursera</div></div>
+        <div class="edu">
+          <div class="edu-l">Education</div>
+          <div class="edu-n">Lalit Narayana University</div>
+          <div class="edu-s">Bachelor in Botany &middot; 2022&ndash;2025</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="inner">
+    <div class="contact-grid">
+      <div class="c-left rv-l">
+        <span class="c-script">Open to opportunities</span>
+        <h2 class="c-hed">Let's Discuss<br>Your <em>Objectives.</em></h2>
+        <p class="c-sub">Available for strategic engagements with D2C brands, B2B organisations, and growth-focused founders. All enquiries receive a response within 24 business hours.</p>
+        <div class="c-links">
+          <a href="mailto:karnshakshi4@gmail.com" class="c-link"><div class="c-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>karnshakshi4@gmail.com</a>
+          <a href="tel:+919625325590" class="c-link"><div class="c-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 011 1.18 2 2 0 013 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg></div>+91 96253 25590</a>
+          <a href="https://www.linkedin.com/in/shakshi-karn-765771320/" target="_blank" rel="noopener noreferrer" class="c-link"><div class="c-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>linkedin.com/in/shakshi-karn-765771320</a>
+          <a href="#" class="c-link"><div class="c-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>J&amp;K Block, Laxmi Nagar, Delhi</a>
+        </div>
+        <div class="avail">
+          <div class="avail-t">Currently Available For</div>
+          <div class="avail-item"><span class="avail-dot"></span>Full-service social media management retainers</div>
+          <div class="avail-item"><span class="avail-dot"></span>Integrated campaign strategy &amp; execution</div>
+          <div class="avail-item"><span class="avail-dot"></span>Influencer &amp; partnership programme management</div>
+          <div class="avail-item"><span class="avail-dot"></span>Social media audits &amp; strategic consulting</div>
+        </div>
+      </div>
+      <div class="c-right rv-r">
+        <form class="c-form" action="https://formspree.io/f/mgoprzpb" method="POST">
+          <div class="f-row">
+            <div class="f-grp"><label class="f-lbl">Full Name</label><input type="text" class="f-inp" placeholder="Priya Sharma" name="name" required></div>
+            <div class="f-grp"><label class="f-lbl">Email Address</label><input type="email" class="f-inp" placeholder="priya@company.com" name="email" required></div>
+          </div>
+          <div class="f-grp"><label class="f-lbl">Organisation</label><input type="text" class="f-inp" placeholder="Company or brand name" name="organisation"></div>
+          <div class="f-grp"><label class="f-lbl">Service Required</label><input type="text" class="f-inp" placeholder="Content strategy, Paid media, Full management..." name="service"></div>
+          <div class="f-grp"><label class="f-lbl">Project Brief</label><textarea class="f-ta" placeholder="Outline your objectives, timeline, and any relevant context..." name="message"></textarea></div>
+          <button type="submit" class="f-btn">Submit Enquiry &rarr;</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer">
+      <span>&copy; 2025 Shakshi Karn &middot; Digital Marketing Executive</span>
+      <span>New Delhi, India &middot; karnshakshi4@gmail.com</span>
+    </div>
+  </div>
+</section>
+
+<div class="modal-bg" id="mb" onclick="if(event.target===this)hide()">
+  <div class="modal" id="mc"></div>
+</div>
+
+
+<script>
+var MD = {
+  e0:{tag:'Jul 2025 - Present, Full-Time',title:'Digital Marketing Executive - Bizvin',body:'<p>Responsible for the development and execution of platform-specific digital marketing content to maintain brand consistency and drive measurable engagement across all managed channels.</p><p>Planned and managed Meta Ads campaigns on Facebook, optimising for reach and conversion objectives. Developed and implemented monthly social media strategies aligned with organisational brand goals. Conducted ongoing competitive trend research and leveraged audience insights to improve content performance. Managed client communications and stakeholder coordination, ensuring timely campaign delivery. Monitored analytics data to track KPIs and inform iterative strategy refinement. Directed creative collaboration with design teams to ensure assets adhered to brand tone and campaign objectives.</p>'},
+  e1:{tag:'Sep 2024 - May 2025, Internship',title:'Marketing Intern - iDigitalpreneur',body:'<p>Supported the planning and execution of integrated marketing campaigns in alignment with product launch schedules and seasonal promotional calendars.</p><p>Developed Instagram story activation frameworks and interactive content formats to drive audience engagement. Coordinated cross-functionally with content and operations teams to ensure brand voice consistency. Provided operational support for affiliate programmes and campaign workflows.</p>'},
+  e2:{tag:'Aug 2024 - Sep 2024, Internship',title:'Social Media Intern - Neophyde Consultancy',body:'<p>Produced brand-compliant social media graphics using Canva in accordance with established visual identity guidelines.</p><p>Managed content scheduling and maintained consistent publishing cadence across platforms. Authored SEO-optimised captions designed to enhance organic reach and audience engagement. Actively participated in strategy sessions, contributing insights to improve content performance.</p>'},
+  e3:{tag:'Ongoing, Freelance',title:'Freelance Digital Marketing Strategist',body:'<p>Independently managing comprehensive social media strategy and content execution for clients across multiple industry verticals.</p><p>100% organic growth methodology maintained across all client accounts. Structured content calendars and monthly performance reporting delivered to all clients. Multi-platform strategy execution across LinkedIn, Instagram, Facebook and Quora.</p>'},
+  p0:{tag:'LinkedIn, Organic, 135 Days, Bizvin Client',title:'Bootstrapped AI-as-a-Service Startup',body:'<p>A bootstrapped AI startup required the development of a credible LinkedIn presence to establish brand authority and generate organic visibility with no paid media budget. The mandate was to build authentic thought leadership within one of LinkedIns most competitive sectors.</p><p>A comprehensive content strategy was developed and executed: disciplined posting cadence, thought leadership content centred on AI applications, and post formats engineered for virality.</p><p><strong>Results over 135 days:</strong></p><p>49,838 total impressions, a 714.5% increase over baseline. 426 post reactions, up 353.2%. 56 content reposts, up 5,500%. 155 net new followers, total following 989. 100% organic, zero paid media investment.</p>',stats:[{v:'49.8K',l:'Impressions'},{v:'+714%',l:'Visibility'},{v:'5,500%',l:'Reposts'}]},
+  p1:{tag:'Instagram, Facebook, YouTube, Bizvin Client',title:'Wellness Brand - Multi-Platform Launch',body:'<p>A wellness brand had no established content presence across three platforms. Publishing was irregular, brand voice was undefined, and no meaningful growth was occurring.</p><p>A full digital audit was conducted, followed by a structured content strategy and weekly editorial calendar built entirely on organic methodology.</p><p><strong>Month one deliverables:</strong></p><p>Activated consistent publishing across Instagram, Facebook and YouTube simultaneously. Established a defined brand voice and educational content framework. Developed a scalable content calendar and reusable asset library for long-term consistency.</p>',stats:[{v:'3',l:'Platforms'},{v:'Month 1',l:'Ongoing'},{v:'100%',l:'Organic'}]},
+  p2:{tag:'Facebook, Quora, 7 Months, Bizvin Client',title:'Canadian Real Estate Professional',body:'<p>A real estate professional in Canada had an active Facebook presence but was experiencing stagnant engagement and negligible growth despite consistent posting.</p><p>The content strategy was restructured to 3-4 posts weekly, focusing on property listings, market analysis, and localised real estate insight. Targeted Facebook advertising and a Quora authority-building programme were executed.</p><p><strong>Outcomes over seven months:</strong></p><p>Facebook audience grew from 1,665 to 1,772 followers, a net increase of 9.7%. 156 new followers acquired with strong retention. Consistent upward growth trajectory sustained throughout. Established a credible Quora presence in the Canadian real estate sector.</p>',stats:[{v:'+156',l:'Followers'},{v:'+9.7%',l:'Growth'},{v:'7 mo',l:'Sustained'}]}
+};
+
+function show(id) {
+  var d = MD[id];
+  if (!d) return;
+  var s = '';
+  if (d.stats) {
+    s = '<div class="modal-stats">' + d.stats.map(function(x){return '<div class="ms-item"><div class="ms-v">'+x.v+'</div><div class="ms-l">'+x.l+'</div></div>';}).join('') + '</div>';
+  }
+  document.getElementById('mc').innerHTML = '<button class="modal-x" onclick="hide()">X</button><div class="modal-tag">'+d.tag+'</div><h2>'+d.title+'</h2>'+d.body+s;
+  document.getElementById('mb').classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+
+function hide() {
+  document.getElementById('mb').classList.remove('on');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') hide(); });
+
+function goTo(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var nav = document.getElementById('nav');
+  var top = el.getBoundingClientRect().top + window.scrollY - nav.offsetHeight - 8;
+  window.scrollTo({top:top, behavior:'smooth'});
+  document.getElementById('nl').classList.remove('open');
+}
+
+window.addEventListener('scroll', function(){
+  var h = document.documentElement.scrollHeight - window.innerHeight;
+  if (h > 0) document.getElementById('sb').style.width = (window.scrollY/h*100)+'%';
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+document.getElementById('nt').addEventListener('click', function(){
+  document.getElementById('nl').classList.toggle('open');
+});
+
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var sibs = Array.from(e.target.parentElement.querySelectorAll('.rv,.rv-l,.rv-r'));
+      e.target.style.transitionDelay = (sibs.indexOf(e.target)*0.08)+'s';
+      e.target.classList.add('in');
+    }
+  });
+},{threshold:0.08});
+document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(function(el){ io.observe(el); });
+
+['ae','ah','ag'].forEach(function(id,i){
+  var el = document.getElementById(id);
+  if (!el) return;
+  var o = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ setTimeout(function(){ e.target.classList.add('in'); },i*120); o.disconnect(); }});
+  },{threshold:0.1});
+  o.observe(el);
+});
+
+document.querySelectorAll('.svc').forEach(function(c){
+  c.addEventListener('mousemove',function(e){
+    var r=this.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    this.style.transform='perspective(700px) rotateY('+(x*12)+'deg) rotateX('+(-y*12)+'deg) translateZ(8px)';
+  });
+  c.addEventListener('mouseleave',function(){ this.style.transform=''; });
+});
+
+document.querySelectorAll('.exp,.port').forEach(function(c){
+  c.addEventListener('mousemove',function(e){
+    var r=this.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    this.style.transform='perspective(800px) rotateY('+(x*7)+'deg) rotateX('+(-y*7)+'deg) translateY(-4px) scale(1.01)';
+  });
+  c.addEventListener('mouseleave',function(){ this.style.transform=''; });
+});
+
+/* form handled by Formspree */
+</script>
+</body>
+</html>
