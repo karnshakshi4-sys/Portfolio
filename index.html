@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shakshi Karn - Digital Marketing Executive</title>
+<title>Shakshi Karn - Social Media Manager</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cormorant+SC:wght@600&family=DM+Serif+Display:ital@0;1&family=Dancing+Script:wght@500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--cream:#F5F0E8;--cream2:#EDE6D6;--cream3:#E2D8C5;--burgundy:#7C1D20;--wine:#5C1215;--rust:#9B3A2A;--dark:#1A1008;--mid:#5C4A35;--light:#9A8468;--white:#FDFAF5}
@@ -115,6 +115,15 @@ section{padding:5rem 5vw}
 #experience .s-hed{color:var(--white)}
 #experience .s-hed em{color:rgba(155,58,42,.9)}
 .exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(245,240,232,.07)}
+.timeline{position:relative;max-width:760px;margin:0 auto;padding-left:2.4rem}
+.timeline::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--burgundy),rgba(245,240,232,.08))}
+.t-item{position:relative;padding-bottom:2.4rem}
+.t-item:last-child{padding-bottom:0}
+.t-dot{position:absolute;left:-2.4rem;top:6px;width:16px;height:16px;border-radius:50%;background:var(--dark);border:3px solid var(--burgundy);box-shadow:0 0 0 5px rgba(124,29,32,.12);z-index:2}
+.t-content{background:rgba(245,240,232,.025);border:1px solid rgba(245,240,232,.08);padding:1.6rem 1.8rem;cursor:pointer;transition:background .3s,transform .3s,border-color .3s;position:relative}
+.t-content:hover{background:rgba(124,29,32,.1);transform:translateX(6px);border-color:rgba(124,29,32,.25)}
+.t-content::after{content:'\2192';position:absolute;bottom:1.4rem;right:1.6rem;color:var(--burgundy);opacity:0;transform:translateX(-6px);transition:all .3s}
+.t-content:hover::after{opacity:1;transform:translateX(0)}
 .exp{background:var(--dark);padding:2rem 1.8rem;cursor:pointer;position:relative;transition:background .3s}
 .exp:hover{background:rgba(124,29,32,.12)}
 .exp::after{content:'\2192';position:absolute;bottom:1.6rem;right:1.8rem;color:var(--burgundy);opacity:0;transform:translateX(-6px);transition:all .3s}
@@ -139,13 +148,17 @@ section{padding:5rem 5vw}
 .port:hover .port-cta em{opacity:1;transform:translateY(0)}
 .port-body{padding:1.3rem 1.4rem 1.5rem}
 .port-plat{font-size:.52rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--burgundy);margin-bottom:.35rem;display:flex;align-items:center;gap:.4rem}
+.plat-icons{display:flex;align-items:center;gap:.4rem}
+.plat-ic{width:24px;height:24px;border-radius:50%;border:1.5px solid rgba(124,29,32,.3);display:inline-flex;align-items:center;justify-content:center;font-family:'Cormorant SC',serif;font-size:.56rem;font-weight:600;color:var(--burgundy);background:rgba(124,29,32,.06);flex-shrink:0;transition:background .25s,transform .25s}
+.port:hover .plat-ic{background:var(--burgundy);color:var(--white);transform:translateY(-2px)}
+.plat-label{color:var(--burgundy);font-size:.52rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
 .port-plat::before{content:'';width:12px;height:1px;background:var(--burgundy)}
 .port-body h3{font-family:'DM Serif Display',serif;font-size:1rem;font-weight:400;margin-bottom:.2rem;line-height:1.25}
 .port-body p{font-size:.74rem;color:var(--mid);font-weight:300;line-height:1.6}
 .port-stats{display:flex;margin-top:.9rem;padding-top:.9rem;border-top:1px solid rgba(124,29,32,.1)}
 .ps{flex:1;border-right:1px solid rgba(124,29,32,.1);padding-right:.7rem}
 .ps:last-child{border-right:none;padding-left:.7rem;padding-right:0}
-.ps-v{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--burgundy);line-height:1}
+.ps-v{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:700;color:var(--burgundy);line-height:1;letter-spacing:-.01em}
 .ps-l{font-size:.52rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--light);margin-top:.1rem}
 
 /* SKILLS */
@@ -155,6 +168,13 @@ section{padding:5rem 5vw}
 .sk-col:last-child{border-right:none}
 .sk-title{font-family:'Dancing Script',cursive;font-size:1.2rem;color:var(--rust);margin-bottom:1.1rem}
 .sk-item{display:flex;align-items:center;gap:.7rem;font-size:.78rem;color:var(--mid);margin-bottom:.55rem}
+.skill{margin-bottom:1.1rem}
+.skill-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.4rem}
+.skill-name{font-size:.76rem;color:var(--mid);font-weight:400}
+.skill-pct{font-family:'Cormorant Garamond',serif;font-size:.82rem;font-weight:600;color:var(--burgundy)}
+.skill-track{height:5px;background:rgba(124,29,32,.1);border-radius:10px;overflow:hidden}
+.skill-fill{height:100%;width:0;background:linear-gradient(90deg,var(--burgundy),var(--rust));border-radius:10px;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.skill-fill.in{width:var(--p)}
 .sk-dot{width:5px;height:5px;border-radius:50%;background:var(--burgundy);flex-shrink:0}
 .tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
 .tool{background:var(--white);border:1px solid rgba(124,29,32,.1);padding:.55rem .9rem;font-size:.73rem;color:var(--mid);text-align:center;transition:all .2s}
@@ -210,7 +230,7 @@ section{padding:5rem 5vw}
 .modal-stats{display:flex;margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid rgba(124,29,32,.1)}
 .ms-item{flex:1;text-align:center;padding:.85rem .4rem;border-right:1px solid rgba(124,29,32,.1)}
 .ms-item:last-child{border-right:none}
-.ms-v{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--burgundy)}
+.ms-v{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:700;color:var(--burgundy)}
 .ms-l{font-size:.52rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--light);margin-top:.2rem}
 
 /* REVEAL */
@@ -281,9 +301,9 @@ section{padding:5rem 5vw}
 
   <div class="hero-title">
     <h1>
-      <span>Digital </span>
-      <span class="it">Marketing </span>
-      <span class="sc">Executive</span>
+      <span>Social </span>
+      <span class="it">Media </span>
+      <span class="sc">Manager</span>
     </h1>
   </div>
 
@@ -300,13 +320,13 @@ section{padding:5rem 5vw}
           <div class="orbit-ring orbit-ring-2"></div>
         </div>
         <div class="badge" style="top:-8px;right:-18px;animation:badgeFloat 5s ease-in-out infinite">
-          <div class="badge-v">49.8K</div><div class="badge-l">Impressions</div>
+          <div class="badge-v">700K+</div><div class="badge-l">Impressions</div>
         </div>
         <div class="badge" style="bottom:60px;left:-18px;animation:badgeFloat 7s ease-in-out infinite;animation-delay:1s">
-          <div class="badge-v">+714%</div><div class="badge-l">Growth</div>
+          <div class="badge-v">5</div><div class="badge-l">Active Clients</div>
         </div>
         <div class="badge" style="bottom:6px;right:-18px;animation:badgeFloat 6s ease-in-out infinite;animation-delay:2s">
-          <div class="badge-v">100%</div><div class="badge-l">Organic</div>
+          <div class="badge-v">&#8377;83</div><div class="badge-l">Lowest CPR</div>
         </div>
         <div class="stats-card">
           <div class="stat"><div class="stat-v">1.5 Yrs</div><div class="stat-l">Industry Experience</div></div>
@@ -331,11 +351,11 @@ section{padding:5rem 5vw}
 
 <section id="about">
   <div class="inner">
-    <p class="s-eye rv" id="ae">Shakshi Karn &mdash; Digital Marketing Executive</p>
+    <p class="s-eye rv" id="ae">Shakshi Karn &mdash; Social Media Manager</p>
     <h2 class="about-hed rv" id="ah">Strategic Marketing. <em>Measurable Growth.</em><br>Demonstrated Impact.</h2>
     <div class="about-grid rv" id="ag">
       <div>
-        <p class="lead">A results-driven Digital Marketing Executive with 1.5 years of demonstrated success across social media management, SEO content strategy, and paid campaign execution for B2B and B2C organisations.</p>
+        <p class="lead">A results-driven Social Media Manager with 1.5 years of demonstrated success across social media management, SEO content strategy, and paid campaign execution for B2B and B2C organisations.</p>
         <p>Proven track record managing multi-platform digital presences across Facebook, Instagram, LinkedIn, Quora, Medium, and Reddit &mdash; consistently delivering 2&ndash;3% month-over-month audience growth through data-informed strategy, trend analysis, and audience behaviour research.</p>
         <a class="btn" onclick="goTo('portfolio')">View Case Studies &rarr;</a>
       </div>
@@ -385,11 +405,23 @@ section{padding:5rem 5vw}
   <div class="inner">
     <span class="s-eye rv">Professional History</span>
     <h2 class="s-hed rv">Relevant Experience. <em>Demonstrated Impact.</em></h2>
-    <div class="exp-grid">
-      <div class="exp rv" onclick="show('e0')"><div class="exp-yr">Jul 2025 &ndash; Present</div><div class="exp-role">Digital Marketing Executive</div><div class="exp-co">Bizvin &middot; Full-Time</div><div class="exp-note">Responsible for platform-specific SEO content production, Meta Ads campaign execution, monthly social strategy development, competitive trend research, analytics oversight, client coordination, and creative direction to design teams.</div></div>
-      <div class="exp rv" onclick="show('e1')"><div class="exp-yr">Sep 2024 &ndash; May 2025</div><div class="exp-role">Marketing Intern</div><div class="exp-co">iDigitalpreneur</div><div class="exp-note">Supported planning and execution of integrated marketing campaigns; developed Instagram story activation frameworks and maintained brand voice consistency across content and operations functions.</div></div>
-      <div class="exp rv" onclick="show('e2')"><div class="exp-yr">Aug 2024 &ndash; Sep 2024</div><div class="exp-role">Social Media Intern</div><div class="exp-co">Neophyde Consultancy</div><div class="exp-note">Produced brand-compliant Canva creatives, managed content scheduling across platforms, authored SEO-optimised captions, and actively contributed to strategic planning sessions.</div></div>
-      <div class="exp rv" onclick="show('e3')"><div class="exp-yr">Ongoing &middot; Freelance</div><div class="exp-role">Freelance Digital Marketing Strategist</div><div class="exp-co">Independent &middot; Multiple Clients</div><div class="exp-note">Delivering end-to-end social media strategy across LinkedIn, Instagram, Facebook &amp; Quora for clients across multiple verticals &mdash; 100% organic growth methodology, structured content calendars, and monthly performance reporting.</div></div>
+    <div class="timeline">
+      <div class="t-item rv">
+        <div class="t-dot"></div>
+        <div class="t-content" onclick="show('e0')"><div class="exp-yr">Jul 2025 &ndash; Present</div><div class="exp-role">Social Media Manager</div><div class="exp-co">Bizvin &middot; Full-Time</div><div class="exp-note">Responsible for platform-specific SEO content production, Meta Ads campaign execution, monthly social strategy development, competitive trend research, analytics oversight, client coordination, and creative direction to design teams.</div></div>
+      </div>
+      <div class="t-item rv">
+        <div class="t-dot"></div>
+        <div class="t-content" onclick="show('e1')"><div class="exp-yr">Sep 2024 &ndash; May 2025</div><div class="exp-role">Marketing Intern</div><div class="exp-co">iDigitalpreneur</div><div class="exp-note">Supported planning and execution of integrated marketing campaigns; developed Instagram story activation frameworks and maintained brand voice consistency across content and operations functions.</div></div>
+      </div>
+      <div class="t-item rv">
+        <div class="t-dot"></div>
+        <div class="t-content" onclick="show('e2')"><div class="exp-yr">Aug 2024 &ndash; Sep 2024</div><div class="exp-role">Social Media Intern</div><div class="exp-co">Neophyde Consultancy</div><div class="exp-note">Produced brand-compliant Canva creatives, managed content scheduling across platforms, authored SEO-optimised captions, and actively contributed to strategic planning sessions.</div></div>
+      </div>
+      <div class="t-item rv">
+        <div class="t-dot"></div>
+        <div class="t-content" onclick="show('e3')"><div class="exp-yr">Ongoing &middot; Freelance</div><div class="exp-role">Freelance Social Media Strategist</div><div class="exp-co">Independent &middot; Multiple Clients</div><div class="exp-note">Delivering end-to-end social media strategy across LinkedIn, Instagram, Facebook &amp; Quora for clients across multiple verticals &mdash; 100% organic growth methodology, structured content calendars, and monthly performance reporting.</div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -400,16 +432,24 @@ section{padding:5rem 5vw}
     <h2 class="s-hed rv">Client <em>Case Studies</em></h2>
     <div class="port-grid">
       <div class="port rv" onclick="show('p0')">
-        <div class="port-thumb"><span>AI Startup</span><div class="port-cta"><em>View Case Study</em></div></div>
-        <div class="port-body"><div class="port-plat">LinkedIn &middot; Organic Growth &middot; Bizvin Client</div><h3>Bootstrapped AI-as-a-Service Startup</h3><p>Developed and executed a full LinkedIn thought leadership programme from inception &mdash; 100% organic, within one of LinkedIn's most competitive industry verticals.</p><div class="port-stats"><div class="ps"><div class="ps-v">49.8K</div><div class="ps-l">Impressions</div></div><div class="ps"><div class="ps-v">+714%</div><div class="ps-l">Visibility</div></div><div class="ps"><div class="ps-v">155</div><div class="ps-l">New Followers</div></div></div></div>
+        <div class="port-thumb"><span>D2C Lifestyle Brand</span><div class="port-cta"><em>View Case Study</em></div></div>
+        <div class="port-body"><div class="port-plat"><span class="plat-icons"><span class="plat-ic">IG</span><span class="plat-ic">FB</span></span><span class="plat-label">Bizvin Client</span></div><h3>D2C Lifestyle Brand &mdash; Content Growth</h3><p>Led organic content strategy and Reels-first programming to drive reach well beyond the existing follower base.</p><div class="port-stats"><div class="ps"><div class="ps-v">201K+</div><div class="ps-l">Views</div></div><div class="ps"><div class="ps-v">+468%</div><div class="ps-l">Engagement</div></div><div class="ps"><div class="ps-v">82.7%</div><div class="ps-l">Non-Follower Reach</div></div></div></div>
       </div>
       <div class="port rv" onclick="show('p1')">
-        <div class="port-thumb"><span>Wellness Brand</span><div class="port-cta"><em>View Case Study</em></div></div>
-        <div class="port-body"><div class="port-plat">Instagram &middot; Facebook &middot; YouTube &middot; Bizvin Client</div><h3>Wellness Brand &mdash; Multi-Platform Launch</h3><p>Established a structured digital presence across three platforms from zero &mdash; brand voice definition, editorial calendar development, and educational content strategy. Ongoing.</p><div class="port-stats"><div class="ps"><div class="ps-v">3</div><div class="ps-l">Platforms</div></div><div class="ps"><div class="ps-v">Month 1</div><div class="ps-l">Ongoing</div></div><div class="ps"><div class="ps-v">100%</div><div class="ps-l">Organic</div></div></div></div>
+        <div class="port-thumb"><span>Real Estate Brand</span><div class="port-cta"><em>View Case Study</em></div></div>
+        <div class="port-body"><div class="port-plat"><span class="plat-icons"><span class="plat-ic">IG</span><span class="plat-ic">FB</span></span><span class="plat-label">Bizvin Client</span></div><h3>Real Estate Brand &mdash; Audience Expansion</h3><p>Built a content engine focused on property showcases and lifestyle storytelling that consistently reached new audiences.</p><div class="port-stats"><div class="ps"><div class="ps-v">219K+</div><div class="ps-l">Views</div></div><div class="ps"><div class="ps-v">9,398</div><div class="ps-l">Shares</div></div><div class="ps"><div class="ps-v">94.9%</div><div class="ps-l">Non-Follower Reach</div></div></div></div>
       </div>
       <div class="port rv" onclick="show('p2')">
-        <div class="port-thumb"><span>Canadian Realtor</span><div class="port-cta"><em>View Case Study</em></div></div>
-        <div class="port-body"><div class="port-plat">Facebook &middot; Quora &middot; Bizvin Client</div><h3>Canadian Real Estate Professional</h3><p>Restructured content strategy, executed targeted Facebook advertising, and established Quora authority positioning to drive sustainable audience growth over seven months.</p><div class="port-stats"><div class="ps"><div class="ps-v">+156</div><div class="ps-l">Followers</div></div><div class="ps"><div class="ps-v">+9.7%</div><div class="ps-l">Growth</div></div><div class="ps"><div class="ps-v">7 mo</div><div class="ps-l">Sustained</div></div></div></div>
+        <div class="port-thumb"><span>Wellness Studio</span><div class="port-cta"><em>View Case Study</em></div></div>
+        <div class="port-body"><div class="port-plat"><span class="plat-icons"><span class="plat-ic">IG</span><span class="plat-ic">FB</span></span><span class="plat-label">Bizvin Client</span></div><h3>Wellness Studio &mdash; Brand Visibility</h3><p>Developed an educational content framework and visual identity to build trust and grow a wellness-focused following.</p><div class="port-stats"><div class="ps"><div class="ps-v">220K+</div><div class="ps-l">Views</div></div><div class="ps"><div class="ps-v">311</div><div class="ps-l">New Followers</div></div><div class="ps"><div class="ps-v">Mixed</div><div class="ps-l">Organic + Paid</div></div></div></div>
+      </div>
+      <div class="port rv" onclick="show('p3')">
+        <div class="port-thumb"><span>Telehealth Platform</span><div class="port-cta"><em>View Case Study</em></div></div>
+        <div class="port-body"><div class="port-plat"><span class="plat-icons"><span class="plat-ic">LI</span></span><span class="plat-label">Bizvin Client</span></div><h3>Telehealth Platform &mdash; Thought Leadership</h3><p>Built LinkedIn presence from the ground up with industry-focused content, entirely organic with zero paid spend.</p><div class="port-stats"><div class="ps"><div class="ps-v">2,915</div><div class="ps-l">Impressions</div></div><div class="ps"><div class="ps-v">+540%</div><div class="ps-l">Growth</div></div><div class="ps"><div class="ps-v">+1,875%</div><div class="ps-l">Reactions</div></div></div></div>
+      </div>
+      <div class="port rv" onclick="show('p4')">
+        <div class="port-thumb"><span>SaaS / Tech Brand</span><div class="port-cta"><em>View Case Study</em></div></div>
+        <div class="port-body"><div class="port-plat"><span class="plat-icons"><span class="plat-ic">LI</span></span><span class="plat-label">Bizvin Client</span></div><h3>SaaS / Tech Brand &mdash; LinkedIn Growth</h3><p>Combined organic thought leadership with sponsored amplification to build credibility within a competitive tech audience.</p><div class="port-stats"><div class="ps"><div class="ps-v">51,965</div><div class="ps-l">Impressions</div></div><div class="ps"><div class="ps-v">177</div><div class="ps-l">New Followers</div></div><div class="ps"><div class="ps-v">Mixed</div><div class="ps-l">Organic + Sponsored</div></div></div></div>
       </div>
     </div>
   </div>
@@ -422,22 +462,19 @@ section{padding:5rem 5vw}
     <div class="sk-grid rv">
       <div class="sk-col">
         <div class="sk-title">Core Competencies</div>
-        <div class="sk-item"><span class="sk-dot"></span>Social Media Management</div>
-        <div class="sk-item"><span class="sk-dot"></span>SEO Content Writing</div>
-        <div class="sk-item"><span class="sk-dot"></span>Integrated Campaign Strategy</div>
-        <div class="sk-item"><span class="sk-dot"></span>Instagram Story Planning</div>
-        <div class="sk-item"><span class="sk-dot"></span>Script Writing for Reels</div>
-        <div class="sk-item"><span class="sk-dot"></span>Trend &amp; Moment Marketing</div>
-        <div class="sk-item"><span class="sk-dot"></span>Promotional Ideation</div>
-        <div class="sk-item"><span class="sk-dot"></span>Client &amp; Stakeholder Communication</div>
+        <div class="skill"><div class="skill-top"><span class="skill-name">Social Media Management</span><span class="skill-pct">95%</span></div><div class="skill-track"><div class="skill-fill" style="--p:95%"></div></div></div>
+        <div class="skill"><div class="skill-top"><span class="skill-name">Campaign Strategy</span><span class="skill-pct">90%</span></div><div class="skill-track"><div class="skill-fill" style="--p:90%"></div></div></div>
+        <div class="skill"><div class="skill-top"><span class="skill-name">SEO Content Writing</span><span class="skill-pct">88%</span></div><div class="skill-track"><div class="skill-fill" style="--p:88%"></div></div></div>
+        <div class="skill"><div class="skill-top"><span class="skill-name">Reels &amp; Story Scripting</span><span class="skill-pct">87%</span></div><div class="skill-track"><div class="skill-fill" style="--p:87%"></div></div></div>
+        <div class="skill"><div class="skill-top"><span class="skill-name">Trend &amp; Moment Marketing</span><span class="skill-pct">90%</span></div><div class="skill-track"><div class="skill-fill" style="--p:90%"></div></div></div>
+        <div class="skill"><div class="skill-top"><span class="skill-name">Client Communication</span><span class="skill-pct">92%</span></div><div class="skill-track"><div class="skill-fill" style="--p:92%"></div></div></div>
       </div>
       <div class="sk-col">
         <div class="sk-title">Tools &amp; Platforms</div>
         <div class="tool-grid">
           <div class="tool">Canva</div><div class="tool">Meta Ads</div>
           <div class="tool">Google Analytics</div><div class="tool">Meta Business Suite</div>
-          <div class="tool">Keyword Planner</div><div class="tool">ChatGPT</div>
-          <div class="tool">Claude</div><div class="tool">Sora</div>
+          <div class="tool">Keyword Planner</div><div class="tool">Google Ads</div>
         </div>
       </div>
       <div class="sk-col">
@@ -490,7 +527,7 @@ section{padding:5rem 5vw}
       </div>
     </div>
     <div class="footer">
-      <span>&copy; 2025 Shakshi Karn &middot; Digital Marketing Executive</span>
+      <span>&copy; 2025 Shakshi Karn &middot; Social Media Manager</span>
       <span>New Delhi, India &middot; karnshakshi4@gmail.com</span>
     </div>
   </div>
@@ -503,13 +540,15 @@ section{padding:5rem 5vw}
 
 <script>
 var MD = {
-  e0:{tag:'Jul 2025 - Present, Full-Time',title:'Digital Marketing Executive - Bizvin',body:'<p>Responsible for the development and execution of platform-specific digital marketing content to maintain brand consistency and drive measurable engagement across all managed channels.</p><p>Planned and managed Meta Ads campaigns on Facebook, optimising for reach and conversion objectives. Developed and implemented monthly social media strategies aligned with organisational brand goals. Conducted ongoing competitive trend research and leveraged audience insights to improve content performance. Managed client communications and stakeholder coordination, ensuring timely campaign delivery. Monitored analytics data to track KPIs and inform iterative strategy refinement. Directed creative collaboration with design teams to ensure assets adhered to brand tone and campaign objectives.</p>'},
+  e0:{tag:'Jul 2025 - Present, Full-Time',title:'Social Media Manager - Bizvin',body:'<p>Responsible for the development and execution of platform-specific digital marketing content to maintain brand consistency and drive measurable engagement across all managed channels.</p><p>Planned and managed Meta Ads campaigns on Facebook, optimising for reach and conversion objectives. Developed and implemented monthly social media strategies aligned with organisational brand goals. Conducted ongoing competitive trend research and leveraged audience insights to improve content performance. Managed client communications and stakeholder coordination, ensuring timely campaign delivery. Monitored analytics data to track KPIs and inform iterative strategy refinement. Directed creative collaboration with design teams to ensure assets adhered to brand tone and campaign objectives.</p>'},
   e1:{tag:'Sep 2024 - May 2025, Internship',title:'Marketing Intern - iDigitalpreneur',body:'<p>Supported the planning and execution of integrated marketing campaigns in alignment with product launch schedules and seasonal promotional calendars.</p><p>Developed Instagram story activation frameworks and interactive content formats to drive audience engagement. Coordinated cross-functionally with content and operations teams to ensure brand voice consistency. Provided operational support for affiliate programmes and campaign workflows.</p>'},
   e2:{tag:'Aug 2024 - Sep 2024, Internship',title:'Social Media Intern - Neophyde Consultancy',body:'<p>Produced brand-compliant social media graphics using Canva in accordance with established visual identity guidelines.</p><p>Managed content scheduling and maintained consistent publishing cadence across platforms. Authored SEO-optimised captions designed to enhance organic reach and audience engagement. Actively participated in strategy sessions, contributing insights to improve content performance.</p>'},
-  e3:{tag:'Ongoing, Freelance',title:'Freelance Digital Marketing Strategist',body:'<p>Independently managing comprehensive social media strategy and content execution for clients across multiple industry verticals.</p><p>100% organic growth methodology maintained across all client accounts. Structured content calendars and monthly performance reporting delivered to all clients. Multi-platform strategy execution across LinkedIn, Instagram, Facebook and Quora.</p>'},
-  p0:{tag:'LinkedIn, Organic, 135 Days, Bizvin Client',title:'Bootstrapped AI-as-a-Service Startup',body:'<p>A bootstrapped AI startup required the development of a credible LinkedIn presence to establish brand authority and generate organic visibility with no paid media budget. The mandate was to build authentic thought leadership within one of LinkedIns most competitive sectors.</p><p>A comprehensive content strategy was developed and executed: disciplined posting cadence, thought leadership content centred on AI applications, and post formats engineered for virality.</p><p><strong>Results over 135 days:</strong></p><p>49,838 total impressions, a 714.5% increase over baseline. 426 post reactions, up 353.2%. 56 content reposts, up 5,500%. 155 net new followers, total following 989. 100% organic, zero paid media investment.</p>',stats:[{v:'49.8K',l:'Impressions'},{v:'+714%',l:'Visibility'},{v:'5,500%',l:'Reposts'}]},
-  p1:{tag:'Instagram, Facebook, YouTube, Bizvin Client',title:'Wellness Brand - Multi-Platform Launch',body:'<p>A wellness brand had no established content presence across three platforms. Publishing was irregular, brand voice was undefined, and no meaningful growth was occurring.</p><p>A full digital audit was conducted, followed by a structured content strategy and weekly editorial calendar built entirely on organic methodology.</p><p><strong>Month one deliverables:</strong></p><p>Activated consistent publishing across Instagram, Facebook and YouTube simultaneously. Established a defined brand voice and educational content framework. Developed a scalable content calendar and reusable asset library for long-term consistency.</p>',stats:[{v:'3',l:'Platforms'},{v:'Month 1',l:'Ongoing'},{v:'100%',l:'Organic'}]},
-  p2:{tag:'Facebook, Quora, 7 Months, Bizvin Client',title:'Canadian Real Estate Professional',body:'<p>A real estate professional in Canada had an active Facebook presence but was experiencing stagnant engagement and negligible growth despite consistent posting.</p><p>The content strategy was restructured to 3-4 posts weekly, focusing on property listings, market analysis, and localised real estate insight. Targeted Facebook advertising and a Quora authority-building programme were executed.</p><p><strong>Outcomes over seven months:</strong></p><p>Facebook audience grew from 1,665 to 1,772 followers, a net increase of 9.7%. 156 new followers acquired with strong retention. Consistent upward growth trajectory sustained throughout. Established a credible Quora presence in the Canadian real estate sector.</p>',stats:[{v:'+156',l:'Followers'},{v:'+9.7%',l:'Growth'},{v:'7 mo',l:'Sustained'}]}
+  e3:{tag:'Ongoing, Freelance',title:'Freelance Social Media Strategist',body:'<p>Independently managing comprehensive social media strategy and content execution for clients across multiple industry verticals.</p><p>100% organic growth methodology maintained across all client accounts. Structured content calendars and monthly performance reporting delivered to all clients. Multi-platform strategy execution across LinkedIn, Instagram, Facebook and Quora.</p>'},
+  p0:{tag:'Instagram, Facebook, Bizvin Client',title:'D2C Lifestyle Brand - Content Growth',body:'<p>A D2C lifestyle brand needed a content strategy capable of reaching beyond its existing audience and driving genuine engagement, not just impressions.</p><p>A Reels-first content programme was developed and executed, combining trend-responsive formats with consistent brand storytelling to maximise organic discovery.</p><p><strong>Results:</strong></p><p>201,000+ total views generated. 11,332 engagements, a 468% increase. 82.7% of reach came from non-followers, confirming strong organic discoverability beyond the existing audience base.</p>',stats:[{v:'201K+',l:'Views'},{v:'+468%',l:'Engagement'},{v:'82.7%',l:'Non-Follower Reach'}]},
+  p1:{tag:'Instagram, Facebook, Bizvin Client',title:'Real Estate Brand - Audience Expansion',body:'<p>A real estate brand required a content approach that could showcase properties while building a genuine, growing audience rather than relying on paid reach alone.</p><p>A visual storytelling strategy was built around property showcases, lifestyle context, and shareable formats designed to extend organic reach.</p><p><strong>Results:</strong></p><p>219,000+ total views generated. 9,398 shares recorded, reflecting strong content resonance. 94.9% of reach came from non-followers, demonstrating the content\'s ability to break beyond the existing audience.</p>',stats:[{v:'219K+',l:'Views'},{v:'9,398',l:'Shares'},{v:'94.9%',l:'Non-Follower Reach'}]},
+  p2:{tag:'Instagram, Facebook, Organic + Paid, Bizvin Client',title:'Wellness Studio - Brand Visibility',body:'<p>A wellness studio needed to build credibility and a loyal following through educational, trust-building content paired with targeted paid support.</p><p>An organic and paid content mix was developed, balancing educational posts with strategic boosted content to accelerate visibility within the target audience.</p><p><strong>Results:</strong></p><p>220,000+ total views generated. 311 new followers acquired. Growth driven through a combined organic and paid content strategy.</p>',stats:[{v:'220K+',l:'Views'},{v:'311',l:'New Followers'},{v:'Mixed',l:'Organic + Paid'}]},
+  p3:{tag:'LinkedIn, Organic, Bizvin Client',title:'Telehealth Platform - Thought Leadership',body:'<p>A telehealth platform needed to establish credibility and visibility on LinkedIn within the healthcare technology space, entirely without paid media support.</p><p>A thought leadership content strategy was developed and executed, focused on industry insight and consistent organic posting cadence.</p><p><strong>Results:</strong></p><p>2,915 total impressions, a 540% increase over baseline. 79 post reactions, an increase of 1,875%. 100% organic, zero paid media investment.</p>',stats:[{v:'2,915',l:'Impressions'},{v:'+540%',l:'Growth'},{v:'+1,875%',l:'Reactions'}]},
+  p4:{tag:'LinkedIn, Organic + Sponsored, Bizvin Client',title:'SaaS / Tech Brand - LinkedIn Growth',body:'<p>A SaaS/tech brand needed to build authority within a competitive, highly technical audience on LinkedIn, combining organic credibility with sponsored amplification.</p><p>A hybrid content strategy was developed, pairing organic thought leadership posts with targeted sponsored content to extend reach within key audience segments.</p><p><strong>Results:</strong></p><p>51,965 total impressions generated. 177 new followers acquired. Growth driven through a combined organic and sponsored LinkedIn content strategy.</p>',stats:[{v:'51,965',l:'Impressions'},{v:'177',l:'New Followers'},{v:'Mixed',l:'Organic + Sponsored'}]}
 };
 
 function show(id) {
@@ -561,6 +600,16 @@ var io = new IntersectionObserver(function(entries){
 },{threshold:0.08});
 document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(function(el){ io.observe(el); });
 
+var skillIo = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      skillIo.unobserve(e.target);
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('.skill-fill').forEach(function(el){ skillIo.observe(el); });
+
 ['ae','ah','ag'].forEach(function(id,i){
   var el = document.getElementById(id);
   if (!el) return;
@@ -578,7 +627,7 @@ document.querySelectorAll('.svc').forEach(function(c){
   c.addEventListener('mouseleave',function(){ this.style.transform=''; });
 });
 
-document.querySelectorAll('.exp,.port').forEach(function(c){
+document.querySelectorAll('.port').forEach(function(c){
   c.addEventListener('mousemove',function(e){
     var r=this.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
     this.style.transform='perspective(800px) rotateY('+(x*7)+'deg) rotateX('+(-y*7)+'deg) translateY(-4px) scale(1.01)';
